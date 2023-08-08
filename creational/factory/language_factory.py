@@ -1,5 +1,5 @@
 '''
-This script demonstartes creation of objects using factory pattern
+This script demonstrates creation of objects using factory pattern
 '''
 class English():
     def __init__(self):
@@ -15,6 +15,7 @@ class German():
 
     def greet(self,name):
         return 'Hallo ' + name + ' ! Wie Gehts?'
+
 
 class LanguageFactory():
 
@@ -34,8 +35,6 @@ def main():
 
     greeter = language_factory.create_language(lang_code)
     print(greeter.greet(name))
-
-
 
 
 

@@ -1,5 +1,5 @@
 '''
-This script demonstartes creation of objects manually without any pattern
+This script demonstrates creation of objects manually without any pattern
 '''
 class English():
     def __init__(self, name):
@@ -15,6 +15,7 @@ class German():
 
     def greet(self):
         return 'Hallo ' + self.name + ' ! Wie Gehts?'
+
 
 class Language():
     def __init__(self):
@@ -35,8 +36,6 @@ def main():
         print(german.greet())
     else:
         print("Language can be English and German!")
-
-
 
 
 
