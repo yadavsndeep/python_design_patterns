@@ -12,12 +12,13 @@ Initialization: Data members of the class are not guaranteed to be initialized.
 from abc import ABC, abstractmethod
 
 
-class Sport():
+class Sport(ABC):
     def __init__(self):
-        self.name = None
-        self.player_count = 11
-        self.outdoor_flag = True
-        self.duration = 0
+        self.build_team()
+
+    @abstractmethod    
+    def build_team(self):
+        raise NotImplementedError
 
 
     def __repr__(self):
@@ -28,80 +29,53 @@ class Sport():
 
 
 
-class TeamBuilder(ABC):
-    @abstractmethod
-    def reset(self):
-        raise NotImplementedError
-
-    @abstractmethod    
-    def build_team(self):
-        raise NotImplementedError
-
-
-class Football(TeamBuilder):
-    def __init__(self):
-        self.sport = Sport()
-
-    def reset(self):
-        self.sport = Sport()
+class Football(Sport):
 
     def build_team(self):
-        self.sport.name = 'Football'
-        self.sport.duration = 90
+        self.name = 'Football'
+        self.duration = 90
+        self.player_count = 11
+        self.outdoor_flag = True
 
-    def get_team(self):
-        return self.sport
 
-class Basketball(TeamBuilder):
-    def __init__(self):
-        self.sport = Sport()
+class Basketball(Sport):
+    def build_team(self):
+        self.name = 'Basketball'
+        self.duration = 60
+        self.player_count = 5
+        self.outdoor_flag = False
 
-    def reset(self):
-        self.sport = Sport()
+
+class Boxing(Sport):
 
     def build_team(self):
-        self.sport.name = 'Basketball'
-        self.sport.duration = 60
-        self.sport.player_count = 5
-        self.sport.outdoor_flag = False
+        self.name = 'Boxing'
+        self.duration = 12
+        self.player_count = 2
+        self.outdoor_flag = False
+        self.contact_flag = True
 
-    def get_team(self):
-        return self.sport
+    def __repr__(self):
+        outdoor = 'Outdoors' if self.outdoor_flag == True else 'Indoors'
+        return f'{self.name!r} has {self.player_count!r} players and is usually played {outdoor!r} for {self.duration!r} minutes. It is a Contact Sport- {self.contact_flag}.'
 
-class Boxing(TeamBuilder):
-    def __init__(self):
-        self.sport = Sport()
-
-    def reset(self):
-        self.sport = Sport()
-
-    def build_team(self):
-        self.sport.name = 'Boxing'
-        self.sport.duration = 12
-        self.sport.player_count = 2
-        self.sport.outdoor_flag = False
-        self.sport.contact_flag = True
-
-    def get_team(self):
-        print(f'{self.sport.name} is a Contact Sport- {self.sport.contact_flag}.')
-        return self.sport
 
 
 def main():
     football = Football()
     football.build_team()
 
-    print(football.get_team())
+    print(football)
 
     basketball = Basketball()
     basketball.build_team()
 
-    print(basketball.get_team())
+    print(basketball)
     
     boxing = Boxing()
     boxing.build_team()
 
-    print(boxing.get_team())
+    print(boxing)
 
 
 
