@@ -63,18 +63,12 @@ class Boxing(Sport):
 
 def main():
     football = Football()
-    football.build_team()
-
     print(football)
 
     basketball = Basketball()
-    basketball.build_team()
-
     print(basketball)
     
     boxing = Boxing()
-    boxing.build_team()
-
     print(boxing)
 
 
